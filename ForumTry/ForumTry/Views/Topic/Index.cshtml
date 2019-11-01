@@ -1,0 +1,23 @@
+﻿@model ForumTry.Models.Topic
+@{
+    ViewData["Title"] = "Topic";
+}
+
+<h1>Index</h1>
+<div>
+    @Html.LabelFor(Model => Model.Titel)
+</div>
+<div>
+    <input asp-for="Titel" />
+</div>
+<div>
+    @Html.LabelFor(Model => Model.Inhoud)
+</div>
+<div>    
+    <textarea asp-for="Inhoud" style="height:200px;width:700px"></textarea>
+</div>
+<div>
+    <input type="submit" name="name" value="Post"/>
+</div>
+
+

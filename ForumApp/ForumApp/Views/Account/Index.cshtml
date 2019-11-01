@@ -1,0 +1,53 @@
+﻿@model ForumApp.Models.Account
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<head>
+    <style>
+
+        #login {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div id="login">
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            <h2>Login</h2>
+            <table>
+                <tr></tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.gebruikersnaam)</td>
+                    <td>@Html.EditorFor(model => model.gebruikersnaam)</td>
+                </tr>
+                <tr>
+                    <td>@Html.ValidationMessageFor(model => model.gebruikersnaam)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.wachtwoord)</td>
+                    <td>@Html.EditorFor(model => model.wachtwoord)</td>
+                </tr>
+                <tr>
+                    <td>@Html.ValidationMessageFor(model => model.wachtwoord)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="name" value="Login" />
+                    </td>
+                    <td>
+                        <input type="button" name="name" value="Registreer"/>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
