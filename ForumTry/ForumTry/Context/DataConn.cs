@@ -9,8 +9,8 @@ namespace ForumTry.Context
 {
     public class DataConn
     {
-        const string connectionString = "Server=mssql.fhict.local;Database=dbi410831;User Id=dbi410831;Password=PeaceOut112;";
-        SqlConnection conn = new SqlConnection(connectionString);
+        public const string connectionString = "Server=mssql.fhict.local;Database=dbi410831;User Id=dbi410831;Password=Peaceout112;";
+        public SqlConnection conn = new SqlConnection(connectionString);
 
         public SqlConnection OpenConn()
         {

@@ -1,8 +1,23 @@
-﻿@{
+﻿@model ForumTry.Models.ForumViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Forumonderdelen</h1>
+@foreach (Forum fvm in Model.forumList)
+{
+    <div>
+        <a asp-controller="Topic" asp-action="Index" asp-route-id="@fvm.Id">@fvm.Title</a>
+    </div>
+    <div>
+        <p>@fvm.Description</p>
+    </div>
+    <div>
+        <a>Bewerken</a>
+        <a>Verwijderen</a>
+    </div>
+}
+    <form>
+        <div>
+            <input class="btn btn-dark" type="submit" value="Nieuw onderwerp" asp-controller="Home" asp-action="Create" formmethod="get" />
+        </div>
+    </form>

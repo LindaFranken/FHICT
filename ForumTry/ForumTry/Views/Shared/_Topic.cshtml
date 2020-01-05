@@ -1,0 +1,7 @@
+﻿@model ForumTry.Models.Topic
+@{
+    ViewData["Title"] = "_Topic";
+}
+
+<a href="@Url.Action("Topic", "Post", new { id = Model.Id})">Read topic</a>
+

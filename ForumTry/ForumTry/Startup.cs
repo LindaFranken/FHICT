@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ForumTry.Context.Interfaces;
+using ForumTry.Context.SQLContext;
+using ForumTry.Repository;
+using ForumTry.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ForumTry
 {
@@ -23,6 +28,24 @@ namespace ForumTry
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(120);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            //Identity
+            //services.AddTransient<IUserStore<Account>, UserContext>();
+            //services.AddTransient<IRoleStore<Role>, RoleContext>();
+            //services.AddIdentity<Account, Role>().AddDefaultTokenProviders();
+
+            services.AddTransient<ITopicContext, TopicContext>();
+            services.AddScoped<TopicRepository>();
+            services.AddTransient<IForumContext, ForumContext>();
+            services.AddScoped<ForumRepository>();
+
             services.AddControllersWithViews();
         }
 
@@ -45,12 +68,13 @@ namespace ForumTry
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

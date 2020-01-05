@@ -1,0 +1,27 @@
+﻿@model ForumTry.Models.TopicViewModel
+@{
+    ViewData["Title"] = "Topic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Topic</h1>
+<form>
+    <div>
+        <label asp-for="Title"></label>
+    </div>
+    <div>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <label asp-for="Content"></label>
+    </div>
+    <div>
+        <textarea asp-for="Content" style="height:200px;width:700px"></textarea>
+        <span asp-validation-for="Content"></span>
+    </div>
+    <div>
+        <input type="hidden" asp-for="ForumID" value="@Model.ForumID" />
+        <input class="btn btn-lg btn-dark btn-block" type="submit" value="Posten" asp-controller="Topic" asp-action="Create" formmethod="post" />
+    </div>
+</form>

@@ -1,0 +1,38 @@
+﻿@model ForumTry.Models.TopicViewModel
+@{
+    ViewData["Title"] = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <div class="ContentBody">
+
+
+        <h2>@Model.Title</h2>
+        <div>
+            <p>@Model.Content</p>
+        </div>
+        <p>@Model.Username</p>
+        <p>@Model.Created</p>
+    </div>
+    @foreach (Reply reply in Model.replies)
+    {
+        <div>
+            <p>@reply.Content</p>
+            <p>@reply.Created</p>
+        </div>
+    }
+
+
+    <div>
+        <form asp-controller="Topic">
+            <div>
+                <textarea asp-for="Reply" style="height:200px;width:700px"></textarea>
+                <span asp-validation-for="Reply"></span>
+            </div>
+            <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+            <input type="hidden" asp-for="@Model.Reply" value="@Model.ReplyID" />
+            <input class="btn btn-dark" type="submit" asp-action="Reactie" formmethod="post" value="Post" />
+        </form>
+    </div>
+</body>
+

@@ -7,17 +7,33 @@ namespace ForumTry.Models
 {
     public class Topic
     {
-        public int ID { get; }
+        public int Id { get; set; }
 
-        public string Titel { get; set; }
+        public string Onderwerp { get; set; }
 
-        public string Inhoud { get; set; }
+        public string Title { get; set; }
 
-        public Topic(int id, string titel, string inhoud)
+        public string Content { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public string Reply { get; set; }
+
+        public int ForumID { get; set; }
+
+        public List<Reply> replies = new List<Reply>();
+
+        //Acountnaam hierin zetten
+        public string Username { get; set; }
+
+        public Topic()
         {
-            this.ID = id;
-            this.Titel = titel;
-            this.Inhoud = inhoud;
+
+        }
+
+        public Topic(int id)
+        {
+
         }
     }
 }

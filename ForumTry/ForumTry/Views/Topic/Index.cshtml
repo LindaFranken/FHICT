@@ -1,23 +1,23 @@
-﻿@model ForumTry.Models.Topic
+﻿@model ForumTry.Models.TopicViewModel
 @{
     ViewData["Title"] = "Topic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-<div>
-    @Html.LabelFor(Model => Model.Titel)
-</div>
-<div>
-    <input asp-for="Titel" />
-</div>
-<div>
-    @Html.LabelFor(Model => Model.Inhoud)
-</div>
-<div>    
-    <textarea asp-for="Inhoud" style="height:200px;width:700px"></textarea>
-</div>
-<div>
-    <input type="submit" name="name" value="Post"/>
-</div>
+<h1>Topics</h1>
+@foreach (Topic tvm in Model.topicList)
+{
+    <div>
+        <a asp-controller="Topic" asp-action="Post" asp-route-id="@tvm.Id">@tvm.Title</a>
+    </div>
+    <div>
+        <p>@tvm.Created</p>
+    </div>
+}
 
-
+<form>
+    <div>
+        <input class="btn btn-dark" type="submit" value="Nieuw topic" asp-controller="Topic" asp-action="Create" asp-route-id="@Model.ForumID" formmethod="get" />
+        <input class="btn btn-dark" type="submit" value="Terug" asp-controller="Home" asp-action="Index" />
+    </div>
+</form>
